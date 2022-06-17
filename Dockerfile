@@ -12,10 +12,16 @@ ENV GO111MODULE=on
 
 
 # Build dependencies
+# RUN mkdir -p /go/src/github.com/ && \
+#     git clone https://github.com/jenningsloy318/redfish_exporter /go/src/github.com/jenningsloy318/redfish_exporter && \
+#     cd /go/src/github.com/jenningsloy318/redfish_exporter && \
+#     make build
+
+COPY . /go/src/github.com/jenningsloy318/redfish_exporter
 RUN mkdir -p /go/src/github.com/ && \
-    git clone https://github.com/jenningsloy318/redfish_exporter /go/src/github.com/jenningsloy318/redfish_exporter && \
     cd /go/src/github.com/jenningsloy318/redfish_exporter && \
     make build
+
 
 FROM golang:rc-bullseye
 

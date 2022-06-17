@@ -35,9 +35,11 @@ build: |
 	@echo ">> building binaries"
 	$(GO) build -o build/redfish_exporter -ldflags  '-X "main.Version=$(VERSION)" -X  "main.BuildRevision=$(REVERSION)" -X  "main.BuildBranch=$(BRANCH)" -X "main.BuildTime=$(TIME)" -X "main.BuildHost=$(HOSTNAME)"'
 
+docker-image: 
+	$(DOCKER) build -t redfish_exporter .
+
 docker-build-centos7:
 	$(DOCKER) run -v `pwd`:/go/src/github.com/jenningsloy318/redfish_exporter  -w /go/src/github.com/jenningsloy318/redfish_exporter docker.io/jenningsloy318/prom-builder:centos7  /bin/bash -c "yum update -y && make build"
-
 
 docker-build-centos8:
 	$(DOCKER) run -v `pwd`:/go/src/github.com/jenningsloy318/redfish_exporter  -w /go/src/github.com/jenningsloy318/redfish_exporter docker.io/jenningsloy318/prom-builder:centos8  /bin/bash -c "yum update -y && make build"

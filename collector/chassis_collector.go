@@ -407,6 +407,7 @@ func (c *ChassisCollector) Collect(ch chan<- prometheus.Metric) {
 					go parseChassisPowerInfoPowerControl(ch, chassisID, chassisPowerInfoPowerControl, wg4)
 				}
 
+				/*
 				// powerSupply
 				chassisPowerInfoPowerSupplies := chassisPowerInfo.PowerSupplies
 				wg5 := &sync.WaitGroup{}
@@ -415,6 +416,7 @@ func (c *ChassisCollector) Collect(ch chan<- prometheus.Metric) {
 
 					go parseChassisPowerInfoPowerSupply(ch, chassisID, chassisPowerInfoPowerSupply, wg5)
 				}
+				*/
 			}
 
 			// process NetapAdapter
